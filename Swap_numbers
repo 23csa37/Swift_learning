@@ -1,0 +1,10 @@
+var x = 10
+var y = 20
+
+print("Before swapping: x = \(x), y = \(y)")
+
+let temp = x
+x = y
+y = temp
+
+print("After swapping: x = \(x), y = \(y)")
