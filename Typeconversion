@@ -1,0 +1,37 @@
+//Int to double
+var number: Int = 10
+var result = Double(number)
+print(result)
+
+
+//Double to int
+var price: Double = 99.85
+var result = Int(price)
+print(result)
+
+
+//Int  to string
+var age: Int = 21
+var result = String(age)
+print("My age is " + result)
+
+
+//String to int
+var number: String = "100"
+var result = Int(number)
+print(result)
+
+
+//String to double
+var value = "45.67"
+if let result = Double(value) {
+    print(result)
+} else {
+    print("Invalid value")
+}
+
+
+//Double to string
+var percentage: Double = 89.5
+var result = String(percentage)
+print(result)
