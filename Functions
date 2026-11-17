@@ -1,0 +1,29 @@
+//functions (without parameter)
+func greet() {
+    print("Hello Swift!")
+}
+
+greet()
+
+// with parameter
+func greet(name: String) {
+    print("Hello \(name)")
+}
+
+greet(name: "Gokulapriya")
+
+//functions with multiple parameter 
+
+func add(a: Int, b: Int) {
+    let sum = a + b
+    print(sum)
+}
+
+add(a: 10, b: 20)
+
+//function with return value
+func add(a: Int, b: Int) -> Int {
+    return a + b
+}
+let result = add(a: 10, b: 20)
+print(result)
