@@ -1,0 +1,21 @@
+// creating and accessing dictionary
+var student = [
+    "Name": "Gokul",
+    "Department": "CSE",
+    "City": "Salem"
+]
+
+print(student["Name"]!)
+print(student["Department"]!)
+
+//looping through dictionary 
+
+ var student = [
+    "Name": "Gokul",
+    "Department": "CSE",
+    "City": "Salem"
+]
+
+for (key, value) in student {
+    print(key, ":", value)
+}
