@@ -1,0 +1,53 @@
+// string operations
+
+var str = "Hello Swift"
+print("Original String:", str)
+
+//Length
+print("Length:", str.count)
+
+//Empty Check
+print("Is Empty:", str.isEmpty)
+
+//Uppercase
+print("Uppercase:", str.uppercased())
+
+//Lowercase
+print("Lowercase:", str.lowercased())
+
+//Contains
+print("Contains Swift:", str.contains("Swift"))
+
+//Prefix
+print("Starts with Hello:", str.hasPrefix("Hello"))
+
+//Suffix
+print("Ends with Swift:", str.hasSuffix("Swift"))
+
+//Append
+str.append(" Programming")
+print("After Append:", str)
+
+//Replace
+str = str.replacingOccurrences(
+    of: "Hello",
+    with: "Welcome"
+)
+print("After Replace:", str)
+
+//Compare
+var str2 = "Welcome Swift Programming"
+print("Equal:", str == str2)
+
+//Split
+print("Words:", str.components(separatedBy: " "))
+
+
+//optionals
+
+var age: Int = 21
+var marks: Int? = 90
+var salary: Int? = nil
+print(age)
+print(marks!)
+print(salary as Any)
