@@ -1,0 +1,35 @@
+import SwiftUI
+
+struct ContentView: View {
+
+    var body: some View {
+
+        VStack(spacing: 20) {
+            Image(systemName: "person.circle.fill")
+              .font(.system(size: 50))
+              .foregroundColor(.blue)
+            Text("My Profile")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+                .foregroundColor(.yellow)
+
+            Text("Gokulapriya")
+                .font(.title)
+                .fontWeight(.semibold)
+                .foregroundColor(.black)
+
+            Text("Computer Science and Engineering")
+                .font(.body)
+                .foregroundColor(.gray)
+
+            Text("Karpagam Institute of Technology")
+                .font(.body)
+                .foregroundColor(.secondary)
+
+            Text("Learning SwiftUI")
+                .font(.headline)
+                .foregroundColor(.green)
+        }
+        .padding()
+    }
+}
