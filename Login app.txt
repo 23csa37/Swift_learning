@@ -1,0 +1,245 @@
+import SwiftUI
+
+struct ContentView: View {
+    @State private var email = ""
+    @State private var password = ""
+    @State private var showPassword = false
+    @State private var rememberMe = false
+    @State private var showAlert = false
+
+    @State private var alertMessage = ""
+
+    var body: some View {
+
+        NavigationStack {
+
+            VStack {
+
+                ScrollView {
+
+                    VStack(alignment: .leading, spacing: 22) {
+
+                        // App Logo
+
+                        VStack(spacing: 10) {
+
+                            Image(systemName: "graduationcap.fill")
+                                .font(.system(size: 40))
+                                .foregroundColor(.white)
+                                .frame(width: 75, height: 75)
+                                .background(Color.blue)
+                                .cornerRadius(20)
+
+                            Text("E-learning")
+                                .font(.largeTitle)
+                                .fontWeight(.bold)
+
+                            Text("Smart Learning App")
+                                .foregroundColor(.gray)
+                        }
+                        .frame(maxWidth: .infinity)
+                        .padding(.top, 30)
+
+
+                        VStack(alignment: .leading, spacing: 8) {
+
+                            Text("Welcome Back!")
+                                .font(.title)
+                                .fontWeight(.bold)
+
+                            Text("Login to continue your learning journey.")
+                                .foregroundColor(.gray)
+                        }
+
+                        // Email Field
+
+                        VStack(alignment: .leading, spacing: 8) {
+                       
+                            Text("Email Address")
+                                .fontWeight(.semibold)
+
+                            HStack {
+                               
+                                Image(systemName: "envelope")
+                                    .foregroundColor(.gray)
+
+                                TextField(
+                                    "Enter your email",
+                                    text: $email
+                                )
+                                .keyboardType(.emailAddress)
+                                .textInputAutocapitalization(.never)
+                                .autocorrectionDisabled()
+                            }
+                            .padding()
+                            .background(Color.gray.opacity(0.1))
+                            .cornerRadius(12)
+                        }
+
+                        VStack(alignment: .leading, spacing: 8) {
+
+                            Text("Password")
+                                .fontWeight(.semibold)
+
+                            HStack {
+
+                                Image(systemName: "lock")
+                                    .foregroundColor(.gray)
+
+                                if showPassword {
+                                    TextField(
+                                        "Enter your password",
+                                        text: $password
+                                    )
+                                    .textInputAutocapitalization(.never)
+                                    .autocorrectionDisabled()
+                                } else {
+                                    SecureField(
+                                        "Enter your password",
+                                        text: $password
+                                    )
+                                }
+
+                                Button {
+                                    showPassword.toggle()
+                                } label: {
+                                    Image(
+                                        systemName: showPassword
+                                        ? "eye.slash"
+                                        : "eye"
+                                    )
+                                    .foregroundColor(.gray)
+                                }
+                            }
+                            .padding()
+                            .background(Color.gray.opacity(0.1))
+                            .cornerRadius(12)
+                        }
+
+                        HStack {
+
+                            Toggle(
+                                "Remember Me",
+                                isOn: $rememberMe
+                            )
+                            .tint(.blue)
+
+                            Spacer()
+
+                            Button("Forgot Password?") {
+                                alertMessage =
+                                    "Password reset feature coming soon."
+                                showAlert = true
+                            }
+                            .font(.caption)
+                        }
+                        Button {
+                            alertMessage =
+                                "Google sign-in is not connected yet."
+                            showAlert = true
+                        } label: {
+
+                            HStack {
+
+                                Image(systemName: "globe")
+
+                                Text("Continue with Google")
+                                    .fontWeight(.semibold)
+                            }
+                            .foregroundColor(.primary)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .overlay {
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(Color.gray.opacity(0.4))
+                            }
+                        }
+
+                        HStack {
+
+                            Text("Don't have an account?")
+                                .foregroundColor(.gray)
+
+                            NavigationLink("Sign Up") {
+                                SignupView()
+                            }
+                            .fontWeight(.bold)
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                    .padding(25)
+                }
+
+                  Button {
+                    login()
+                } label: {
+                    Text("Login")
+                        .fontWeight(.bold)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.blue)
+                        .cornerRadius(12)
+                }
+                .padding(.horizontal, 25)
+                .padding(.bottom, 10)
+            }
+            .background(Color(.systemBackground))
+            .alert("Nova", isPresented: $showAlert) {
+                Button("OK", role: .cancel) { }
+            } message: {
+                Text(alertMessage)
+            }
+        }
+    }
+
+    func login() {
+
+        if email.isEmpty || password.isEmpty {
+
+            alertMessage = "Please enter email and password."
+
+        } else if !email.contains("@") ||
+                    !email.contains(".") {
+
+            alertMessage = "Please enter a valid email address."
+
+        } else if password.count < 6 {
+
+            alertMessage =
+                "Password must contain at least 6 characters."
+
+        } else {
+
+            alertMessage = "Login details are valid!"
+        }
+
+        showAlert = true
+    }
+}
+
+struct SignupView: View {
+
+    var body: some View {
+
+        VStack(spacing: 20) {
+
+            Image(systemName: "person.crop.circle.badge.plus")
+                .font(.system(size: 70))
+                .foregroundColor(.blue)
+
+            Text("Create Account")
+                .font(.largeTitle)
+                .fontWeight(.bold)
+
+            Text("Welcome to Nova!")
+                .foregroundColor(.gray)
+        }
+        .navigationTitle("Sign Up")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+}
+
+#Preview {
+    ContentView()
+}
